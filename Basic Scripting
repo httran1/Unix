@@ -1,5 +1,5 @@
 # Basic Scripting
-# Dataset from Computing for Biologist Princeton
+# Dataset from Computing for Biologist Princeton already cloned into the home directory in the CSB directory
 # Chapter 1
 # Exercise 1.10.1
 # 1. Change the directory to CSB/unix/sandbox
@@ -30,6 +30,42 @@ grep -c isogroup00036 Marra2014_data.fasta
 16
 
 # 5. Replace the original "two-spaces" delimiter with a comma
+# Go to sandbox directory and use my_file.fasta to prevent changing the original Marra2014 file
+cd
+cd sandbox
 
+# Briefly observe the file content
+head -n5 my_file.fasta
+>contig00001  length=527  numreads=2  gene=isogroup00001  status=it_thresh
+ATCCTAGCTACTCTGGAGACTGAGGATTGAAGTTCAAAGTCAGCTCAAGCAAGAGATTTG
+TTTACAATTAACCCACAAAAGGCTGTTACTGAAGGTGTGGCTTAAGTGTCAGAGCAACAG
+CTATGAGTGGAGGAATTTTCTATTACAATATAATTTCATCTCTGGTAAATTGACCAATTA
+ACTGGAACTTTTTCCAACTGAAATAAATGGTAAACTTTTTATCCACCATTCTGCCATCTG
+
+# We want the file to be contig00001,length=527,numreads=2,...
+# Use cat to print the file
+# Use tr substitute "two-spaces" delimiter with a comma and -s to squeeze the two spaces
+# Use head to look at the first 3 lines
+cat my_file.fasta |tr -s " " "," |head -n3
+>contig00001,length=527,numreads=2,gene=isogroup00001,status=it_thresh
+ATCCTAGCTACTCTGGAGACTGAGGATTGAAGTTCAAAGTCAGCTCAAGCAAGAGATTTG
+TTTACAATTAACCCACAAAAGGCTGTTACTGAAGGTGTGGCTTAAGTGTCAGAGCAACAG
+
+# 6. How many unique isogroups are in the file?
+# Extract contigs info use grep ">"
+ grep ">" my_file.fasta | head -n2
+>contig00001  length=527  numreads=2  gene=isogroup00001  status=it_thresh
+>contig00002  length=551  numreads=8  gene=isogroup00001  status=it_thresh
+
+# Cut the contigs columns (note: we still have the two space delimiter)
+# use tr -s to change to comma delimiter
+grep ">" my_file.fasta |tr -s " " "," | cut -d "," -f 4|  head -n2
+gene=isogroup00001
+gene=isogroup00001
+
+# Sort them and use uniq to remove duplicate
+# Use wc -l to count the lines 
+grep ">" my_file.fasta |tr -s " " "," | cut -d "," -f 4|  sort | uniq | wc -l
+43
 
 
