@@ -1,0 +1,13 @@
+# Basic Scripting
+# Dataset from Computing for Biologist Princeton
+# Chapter 1
+# Exercise 1.10.1
+# 1. Change to directory to CSB/unix/sandbox
+
+cd CSB/unix/sandbox
+
+# 2. What is the size of file Marra2014_data.fasta?
+
+ls -lh CSB/unix/data/Marra2014_data.fasta
+553K
+
