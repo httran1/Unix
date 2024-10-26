@@ -2,7 +2,7 @@
 # Dataset from Computing for Biologist Princeton
 # Chapter 1
 # Exercise 1.10.1
-# 1. Change to directory to CSB/unix/sandbox
+# 1. Change the directory to CSB/unix/sandbox
 
 cd CSB/unix/sandbox
 
@@ -10,4 +10,26 @@ cd CSB/unix/sandbox
 
 ls -lh CSB/unix/data/Marra2014_data.fasta
 553K
+
+3. Create a copy of this file in the sandbox and name it my_file.fasta
+# Go back to the home directory 
+cd
+
+# create a copy of Marra2014_data.fasta in sandbox directory
+cp CSB/unix/data/Marra2014_data.fasta sandbox/my_file.fasta
+
+# list the file in sandbox to ensure the file is in sandbox
+ls sandbox
+
+# 3. How many contigs are classified as isogroup00036?
+# Go to the directory that has the Marra2014 file
+cd CSB/unix/data 
+
+# Count the occurrence of a string with grep option -c (count)
+grep -c isogroup00036 Marra2014_data.fasta
+16
+
+# 5. Replace the original "two-spaces" delimiter with a comma
+
+
 
